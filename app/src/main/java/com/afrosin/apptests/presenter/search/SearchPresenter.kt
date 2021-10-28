@@ -3,6 +3,7 @@ package com.afrosin.apptests.presenter.search
 import com.afrosin.apptests.model.SearchResponse
 import com.afrosin.apptests.repository.GitHubRepository
 import com.afrosin.apptests.repository.GitHubRepository.GitHubRepositoryCallback
+import com.afrosin.apptests.view.ViewContract
 import com.afrosin.apptests.view.search.ViewSearchContract
 import retrofit2.Response
 
@@ -19,9 +20,19 @@ internal class SearchPresenter internal constructor(
     private val repository: GitHubRepository
 ) : PresenterSearchContract, GitHubRepositoryCallback {
 
+    var viewSearchContract: ViewContract? = null
+
     override fun searchGitHub(searchQuery: String) {
         viewContract.displayLoading(true)
         repository.searchGithub(searchQuery, this)
+    }
+
+    override fun onAttach(view: ViewContract) {
+        viewSearchContract = view
+    }
+
+    override fun onDetach() {
+        viewSearchContract = null
     }
 
     override fun handleGitHubResponse(response: Response<SearchResponse?>?) {
