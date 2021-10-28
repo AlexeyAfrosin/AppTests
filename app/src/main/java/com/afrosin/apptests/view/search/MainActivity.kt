@@ -37,6 +37,16 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         setRecyclerView()
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.onAttach(this)
+    }
+
+    override fun onDestroy() {
+        presenter.onDetach()
+        super.onDestroy()
+    }
+
     private fun setRecyclerView() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter

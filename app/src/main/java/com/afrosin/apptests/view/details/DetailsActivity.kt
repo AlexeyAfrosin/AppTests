@@ -33,6 +33,16 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
         setCountText(count)
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.onAttach(this)
+    }
+
+    override fun onDestroy() {
+        presenter.onDetach()
+        super.onDestroy()
+    }
+
     private fun setCountText(count: Int) {
         totalCountTextView.text =
             String.format(Locale.getDefault(), getString(R.string.results_count), count)
