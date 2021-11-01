@@ -1,8 +1,8 @@
 package com.afrosin.apptests.presenter.search
 
 import com.afrosin.apptests.model.SearchResponse
-import com.afrosin.apptests.repository.GitHubRepository
-import com.afrosin.apptests.repository.GitHubRepository.GitHubRepositoryCallback
+import com.afrosin.apptests.presenter.RepositoryContract
+import com.afrosin.apptests.repository.RepositoryCallback
 import com.afrosin.apptests.view.ViewContract
 import com.afrosin.apptests.view.search.ViewSearchContract
 import retrofit2.Response
@@ -17,8 +17,8 @@ import retrofit2.Response
 
 internal class SearchPresenter internal constructor(
     private val viewContract: ViewSearchContract,
-    private val repository: GitHubRepository
-) : PresenterSearchContract, GitHubRepositoryCallback {
+    private val repository: RepositoryContract
+) : PresenterSearchContract, RepositoryCallback {
 
     var viewSearchContract: ViewContract? = null
 
