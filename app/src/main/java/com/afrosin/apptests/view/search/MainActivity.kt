@@ -6,19 +6,14 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.afrosin.apptests.BuildConfig
 import com.afrosin.apptests.R
 import com.afrosin.apptests.model.SearchResult
 import com.afrosin.apptests.presenter.RepositoryContract
 import com.afrosin.apptests.presenter.search.PresenterSearchContract
 import com.afrosin.apptests.presenter.search.SearchPresenter
-import com.afrosin.apptests.repository.FakeGitHubRepository
-import com.afrosin.apptests.repository.GitHubApi
-import com.afrosin.apptests.repository.GitHubRepository
+import com.afrosin.apptests.repository.RepositoryContractFactory
 import com.afrosin.apptests.view.details.DetailsActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class MainActivity : AppCompatActivity(), ViewSearchContract {
@@ -77,20 +72,9 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
     }
 
     private fun createRepository(): RepositoryContract {
-        return if (BuildConfig.TYPE == FAKE) {
-            FakeGitHubRepository()
-        } else {
-            GitHubRepository(createRetrofit().create(GitHubApi::class.java))
-        }
-
+        return RepositoryContractFactory().createRepository()
     }
 
-    private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
 
     override fun displaySearchResults(
         searchResults: List<SearchResult>,
@@ -122,8 +106,4 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         }
     }
 
-    companion object {
-        const val BASE_URL = "https://api.github.com"
-        const val FAKE = "FAKE"
-    }
 }

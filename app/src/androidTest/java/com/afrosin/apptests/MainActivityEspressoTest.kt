@@ -44,12 +44,12 @@ class MainActivityEspressoTest {
         searchEditText.perform(replaceText("algol"), closeSoftKeyboard())
         searchEditText.perform(pressImeActionButton())
 
-        if (BuildConfig.TYPE == MainActivity.FAKE) {
+        if (BuildConfig.IS_TEST) {
             onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 42")))
         } else {
             onView(isRoot()).perform(delay())
 
-            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 2653")))
+            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 2655")))
         }
 
     }

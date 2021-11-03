@@ -22,6 +22,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            versionNameSuffix '-debug'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -36,21 +39,19 @@ android {
             includeAndroidResources = true
         }
     }
-
-    flavorDimensions "default"
+    flavorDimensions 'versions'
     productFlavors {
-        fake {
-            applicationIdSuffix ".fake"
-            versionNameSuffix "-fake"
-            buildConfigField "String", "TYPE", '"FAKE"'
+        configDefault {
+            dimension 'versions'
+            versionNameSuffix '.configDefault'
+            buildConfigField "boolean", "IS_TEST", "false"
         }
-        real {
-            applicationIdSuffix ".real"
-            versionNameSuffix "-real"
-            buildConfigField "String", "TYPE", '"REAL"'
+        configTest {
+            dimension 'versions'
+            versionNameSuffix '.configTest'
+            buildConfigField "boolean", "IS_TEST", "true"
         }
     }
-
 }
 
 dependencies {
