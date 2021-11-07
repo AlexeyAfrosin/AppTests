@@ -3,17 +3,12 @@ package com.afrosin.apptests.automator
 import android.content.Context
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
-import com.afrosin.apptests.R
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import org.junit.Before
@@ -59,8 +54,8 @@ class BehaviorTest {
 
         editText.text = "UiAutomator"
 
-        Espresso.onView(ViewMatchers.withId(R.id.searchEditText))
-            .perform(ViewActions.pressImeActionButton())
+        val searchData = uiDevice.findObject(By.res(packageName, "btSearchData"))
+        searchData.click()
 
         val changedText = uiDevice.wait(
             Until.findObject(By.res(packageName, "totalCountTextView")),
