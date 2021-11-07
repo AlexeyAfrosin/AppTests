@@ -7,6 +7,9 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
+import com.afrosin.apptests.TEST_NUMBER_OF_RESULTS_MINUS_1
+import com.afrosin.apptests.TEST_NUMBER_OF_RESULTS_PLUS_1
+import com.afrosin.apptests.TEST_NUMBER_OF_RESULTS_ZERO
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import org.junit.Assert.assertNotEquals
@@ -71,7 +74,7 @@ class DetailsActivityAutomatorTest {
                 TIMEOUT
             )
 
-        assertEquals(changedText.text, "Number of results: -1")
+        assertEquals(changedText.text, TEST_NUMBER_OF_RESULTS_MINUS_1)
     }
 
     @Test
@@ -87,7 +90,7 @@ class DetailsActivityAutomatorTest {
                 TIMEOUT
             )
 
-        assertEquals(changedText.text, "Number of results: 1")
+        assertEquals(changedText.text, TEST_NUMBER_OF_RESULTS_PLUS_1)
     }
 
     @Test
@@ -103,7 +106,7 @@ class DetailsActivityAutomatorTest {
                 TIMEOUT
             )
 
-        assertNotEquals(changedText.text, "Number of results: 0")
+        assertNotEquals(changedText.text, TEST_NUMBER_OF_RESULTS_ZERO)
     }
 
 }
