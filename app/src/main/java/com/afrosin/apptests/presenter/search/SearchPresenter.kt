@@ -5,7 +5,6 @@ import com.afrosin.apptests.presenter.RepositoryContract
 import com.afrosin.apptests.presenter.SchedulerProvider
 import com.afrosin.apptests.repository.RepositoryCallback
 import com.afrosin.apptests.view.ViewContract
-import com.afrosin.apptests.view.search.SearchSchedulerProvider
 import com.afrosin.apptests.view.search.ViewSearchContract
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver

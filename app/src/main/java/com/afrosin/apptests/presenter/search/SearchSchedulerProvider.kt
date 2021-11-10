@@ -1,4 +1,4 @@
-package com.afrosin.apptests.view.search
+package com.afrosin.apptests.presenter.search
 
 import com.afrosin.apptests.presenter.SchedulerProvider
 import io.reactivex.Scheduler
