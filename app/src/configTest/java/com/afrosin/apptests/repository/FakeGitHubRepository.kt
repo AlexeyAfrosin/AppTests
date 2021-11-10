@@ -3,6 +3,7 @@ package com.afrosin.apptests.repository
 import com.afrosin.apptests.model.SearchResponse
 import com.afrosin.apptests.model.SearchResult
 import com.afrosin.apptests.presenter.RepositoryContract
+import io.reactivex.Observable
 import retrofit2.Response
 import kotlin.random.Random
 
@@ -13,6 +14,10 @@ internal class FakeGitHubRepository : RepositoryContract {
         callback: RepositoryCallback
     ) {
         callback.handleGitHubResponse(Response.success(getFakeResponce()))
+    }
+
+    override fun searchGithub(query: String): Observable<SearchResponse> {
+        return Observable.just(getFakeResponce())
     }
 
     private fun getFakeResponce(): SearchResponse {
