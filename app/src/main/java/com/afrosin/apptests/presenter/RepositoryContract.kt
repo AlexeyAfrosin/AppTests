@@ -14,4 +14,9 @@ interface RepositoryContract {
         query: String
     ): Observable<SearchResponse>
 
+    suspend fun searchGithubAsync(
+        query: String
+    ): SearchResponse
+
+
 }

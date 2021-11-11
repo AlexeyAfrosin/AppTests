@@ -1,8 +1,8 @@
 package com.afrosin.apptests.repository
 
 import com.afrosin.apptests.presenter.RepositoryContract
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RepositoryContractFactory {
@@ -12,7 +12,7 @@ class RepositoryContractFactory {
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseURL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
